@@ -8,6 +8,9 @@
     @if (isset($total_stok))
         <p class="mb-3">Total Stok Seluruh Barang: <strong>{{ $total_stok }}</strong></p>
     @endif
+    <div class="mb-3">
+        <a href="{{ route('barang.create') }}" class="btn btn-success">Tambah Barang</a>
+    </div>
     <table class="table table-striped mt-4">
         <thead>
             <tr>
@@ -35,6 +38,15 @@
                     </td>
                     <td>
                         <a href="{{ route('barang.detail', ['id' => $b['id']]) }}" class="btn btn-info btn-sm">Detail</a>
+                        <a href="{{ route('barang.edit', $b['id']) }}" class="btn btn-warning btn-sm">
+                            Edit
+                        </a>
+                        <form action="{{ route('barang.destroy', $b['id']) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm"
+                                onclick="return confirm('Apakah Anda yakin ingin menghapus barang ini?')">Hapus</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

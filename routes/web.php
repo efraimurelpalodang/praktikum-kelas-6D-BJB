@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -18,6 +19,8 @@ Route::get('/profil', function () {
 Route::get('/kalkulator/{angka1}/{angka2}', function ($angka1, $angka2) {
     return view('kalkulator', ['angka1' => $angka1, 'angka2' => $angka2]);
 });
-Route::get('/barang', [BarangController::class, 'index']);
+// Route::get('/barang', [BarangController::class, 'index']);
+Route::resource('/barang', BarangController::class);
 Route::get('/barang/detail/{id}', [BarangController::class, 'detail'])->name('barang.detail');
-Route::get('/kategori/{id}', [BarangController::class, 'kategori']);
+Route::resource('/kategori', KategoriController::class);
+Route::get('/kategori-filter/{id}', [BarangController::class, 'kategori'])->name('kategori.filter');
