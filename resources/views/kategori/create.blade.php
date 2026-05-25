@@ -1,13 +1,14 @@
-@extends('layouts.main')
-@section('content')
-    <h2 class="mt-5 mb-4">
+@extends('layouts.admin')
+@section('content_header')
+    <h1>
         @isset($kategori)
             Edit Kategori
         @else
             Tambah Kategori
         @endisset
-    </h2>
-
+    </h1>
+@endsection
+@section('content')
     <form
         action="@isset($kategori){{ route('kategori.update', $kategori->id) }}@else{{ route('kategori.store') }}@endisset"
         method="POST" class="mt-4">

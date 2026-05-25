@@ -1,13 +1,12 @@
-@extends('layouts.main')
+@extends('layouts.admin')
+@section('content_header')
+    @isset($barang)
+        <h1>Edit Barang</h1>
+    @else
+        <h1>Tambah Barang</h1>
+    @endisset
+@endsection
 @section('content')
-    <h2 class="mt-5 mb-4">
-        @isset($barang)
-            Edit Barang
-        @else
-            Tambah Barang
-        @endisset
-    </h2>
-
     <form
         action="@isset($barang){{ route('barang.update', $barang->id) }}@else{{ route('barang.store') }}@endisset"
         method="POST" class="mt-4">
